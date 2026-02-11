@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esempio LocalStorage</title>
+  <style>
+  
+  html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #111;
+}
+
+#viewport {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+}
+  
+  </style>
+    
+    
+    <link rel="stylesheet" href="./CSS/esdiv.css">
+</head>
+<body>
+  <div id="viewport">
+
+<!-- div class="container">
+    <h3>Salva Dato</h3>
+    <input type="text" id="userInput" placeholder="Scrivi qualcosa...">
+    
+    <button class="btn-save" onclick="salvaDato()">Salva nel Browser</button>
+    <button class="btn-read" onclick="leggiDato()">Leggi Dato Salvato</button>
+
+    <div id="output">Il dato apparirà qui...</div>
+</div> -->
+
+
+<div class="dd-frame" style="top: 50px; left:50px; width: 500px; height: 400px">
+  <div class="dd-title">Scheda Personaggio</div>
+  <p>Nome: Elrond</p>
+  <p>Classe: myClass</p>
+  <p>PV: 12</p>
+  
+</div>
+
+<div class="dd-frame" style="top: 550px; left:50px; width: 500px; height: 400px">
+	<div class="dd-title">Inventario</div>
+	<div class="dd-inventory" id="inv">
+	  <div class="dd-slot" title="Pozione"><span class="icon">🧪</span></div>
+	  <div class="dd-slot" title="Spada"><span class="icon">🗡️</span></div>
+	  <div class="dd-slot empty" title="Vuoto"></div>
+	  <div class="dd-slot empty" title="Vuoto"></div>
+	  <div class="dd-slot" title="Monete"><span class="icon">🪙</span></div>
+	  <div class="dd-slot empty" title="Vuoto"></div>
+	  <!-- altra riga -->
+	  <div class="dd-slot empty" title="Vuoto"></div>
+	  <div class="dd-slot empty" title="Vuoto"></div>
+	  <div class="dd-slot empty" title="Vuoto"></div>
+	  <div class="dd-slot" title="Pergamena"><span class="icon">📜</span></div>
+	  <div class="dd-slot empty" title="Vuoto"></div>
+	  <div class="dd-slot empty" title="Vuoto"></div>
+	</div>
+</div>
+
+
+<div class="dd-frame" style="bottom: 50px; right:50px; width: 300px; height: 300px">
+  <div class="dd-title">Azioni</div>
+
+  <button class="dd-btn">Incantesimo</button>
+  <button class="dd-btn">Attacca</button>
+  <button class="dd-btn">Parla</button>
+  <button class="dd-btn">Vai a</button>
+</div>
+
+
+
+<div class="dd-frame" style="top: 50px; left:700px; width: 900px; height: 900px">
+
+</div>
+
+</div>
+
+<script>
+function scaleViewport() {
+  const baseWidth = 2920;
+  const baseHeight = 1080;
+
+  const scaleX = window.innerWidth / baseWidth;
+  const scaleY = window.innerHeight / baseHeight;
+  
+  //scaleY = baseHeight;
+  const scale = Math.min(scaleX, scaleY);
+
+  const viewport = document.getElementById('viewport');
+  viewport.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener('resize', scaleViewport);
+scaleViewport();
+</script>
+
+
+<script>
+  document.getElementById("inv").addEventListener("click", (e) => {
+    const slot = e.target.closest(".dd-slot");
+    if (!slot) return;
+
+    document.querySelectorAll(".dd-slot.selected")
+      .forEach(s => s.classList.remove("selected"));
+
+    slot.classList.add("selected");
+  });
+</script>
+
+<script src="./JS/persistance.js"></script>
+
+</body>
+</html>
